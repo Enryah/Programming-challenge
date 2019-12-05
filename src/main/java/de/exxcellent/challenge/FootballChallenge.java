@@ -6,16 +6,21 @@ package de.exxcellent.challenge;
  * @author Lukas Schmid <lhdschmid@gmail.com>
  */
 
-public class Football {
+public class FootballChallenge implements Challenge{
 	
-	// save best result
-	static int deltaMin=Integer.MAX_VALUE;
-	static String teamMinGoalDiff="A good team";
+	int deltaMin;
+	String teamMinGoalDiff;
+	
+	public FootballChallenge() {
+		// save best result
+		deltaMin=Integer.MAX_VALUE;
+		teamMinGoalDiff="A good team";
+	}
 
-	public static void calculateGoalDiff(String[] data) {
+	public void rowBasedCalculations(String[] data) {
 		
-		int goalsScored = Football.parseInt(data[5]);
-		int goalsAllowed = Football.parseInt(data[6]);
+		int goalsScored = parse(data[5]);
+		int goalsAllowed = parse(data[6]);
 		
 		// if first result
 		if (goalsScored != Integer.MAX_VALUE && goalsAllowed != Integer.MAX_VALUE) {
@@ -29,7 +34,7 @@ public class Football {
 		}
 	}
 	
-	private static int parseInt(String s) {
+	public int parse(String s) {
 		// default value
 		int i = Integer.MAX_VALUE;
 		
@@ -42,7 +47,7 @@ public class Football {
 		return i;
 	}
 	
-	public static String getResult() {
+	public String getResult() {
 		return teamMinGoalDiff;
 	}
 

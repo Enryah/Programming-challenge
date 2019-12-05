@@ -16,12 +16,12 @@ public class CsvReader {
 	String path;
 	final static int WEATHER = 1;
 	final static int FOOTBALL = 2;
-	private int type;
+	private Challenge challenge;
 	
-	public CsvReader(String path, String delim, int type) {
+	public CsvReader(String path, String delim, Challenge challenge) {
 		this.path = path;
 		this.delim = delim;
-		this.type = type;
+		this.challenge = challenge;
 	}
 	
 	public String readFile() {
@@ -37,21 +37,7 @@ public class CsvReader {
 			
 			while ((row = reader.readLine()) != null) {
 			    data = row.split(delim);
-			    
-			    // add calculation method for new challenge here
-			    switch (type) {
-			    
-			    case WEATHER: 
-			    	Weather.calculateTempSpread(data);
-			    	break;
-			    case FOOTBALL:
-			    	Football.calculateGoalDiff(data);
-			    	break;
-			    	
-			    default:
-			    	System.out.println("Missing csv reader type");
-			    	break;
-			    }	
+			    challenge.rowBasedCalculations(data);
 			}
 			reader.close();
 			    
@@ -62,16 +48,6 @@ public class CsvReader {
 			e.printStackTrace();
 		}
 		
-		// add return method for new challenge here
-		switch (type) {
-		
-		case WEATHER: 
-	    	return Weather.getResult();
-	    case FOOTBALL:
-	    	return Football.getResult();
-	    	
-	    default:
-	    	return "Error";
-		}
+		return challenge.getResult();
 	}
 }

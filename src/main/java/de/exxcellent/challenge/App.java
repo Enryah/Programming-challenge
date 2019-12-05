@@ -34,12 +34,12 @@ public final class App {
 			switch (args[i]) {
 			case "--football":
 			case "-f":
-				footballReader = new CsvReader("src/main/resources/de/exxcellent/challenge/" + args[i+1], ",", CsvReader.FOOTBALL);
+				footballReader = new CsvReader("src/main/resources/de/exxcellent/challenge/" + args[i+1], ",", new FootballChallenge());
 				teamWithSmallestGoalSpread = footballReader.readFile();
 				break;
 			case "--weather":
 			case "-w":
-				weatherReader = new CsvReader("src/main/resources/de/exxcellent/challenge/" + args[i+1], ",", CsvReader.WEATHER);
+				weatherReader = new CsvReader("src/main/resources/de/exxcellent/challenge/" + args[i+1], ",", new WeatherChallenge());
 				dayWithSmallestTempSpread = weatherReader.readFile();
 				break;
 			default:

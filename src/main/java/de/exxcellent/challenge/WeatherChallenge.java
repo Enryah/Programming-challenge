@@ -6,15 +6,20 @@ package de.exxcellent.challenge;
  * @author Lukas Schmid <lhdschmid@gmail.com>
  */
 
-public class Weather {
+public class WeatherChallenge implements Challenge{
 	// save best result
-	static float deltaMin=Float.NaN;
-	static String dayMin="Someday";
+	float deltaMin;
+	String dayMin;
+	
+	public WeatherChallenge() {
+		deltaMin=Float.NaN;
+		dayMin="Someday";
+	}
 
-	public static void calculateTempSpread(String[] data) {
+	public void rowBasedCalculations(String[] data) {
 		
-		float max = Weather.parseFloat(data[1]);
-		float min = Weather.parseFloat(data[2]);
+		float max = parse(data[1]);
+		float min = parse(data[2]);
 		
 		// if first result
 		if (!Float.isNaN(max) && !Float.isNaN(min)) {
@@ -28,7 +33,7 @@ public class Weather {
 		}
 	}
 	
-	private static float parseFloat(String s) {
+	private float parse(String s) {
 		// default value
 		float f = Float.NaN;
 		
@@ -41,7 +46,7 @@ public class Weather {
 		return f;
 	}
 	
-	public static String getResult() {
+	public String getResult() {
 		return dayMin;
 	}
 }
