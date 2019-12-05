@@ -7,7 +7,11 @@ package de.exxcellent.challenge;
  * @author Benjamin Schmid <benjamin.schmid@exxcellent.de>
  */
 public final class App {
-
+	
+	// static for testing visibility
+	static FootballChallenge fbChallenge = new FootballChallenge();
+	static WeatherChallenge wChallenge = new WeatherChallenge();
+	
     /**
      * This is the main entry method of your program.
      * @param args The CLI arguments passed
@@ -19,34 +23,42 @@ public final class App {
     	String dayWithSmallestTempSpread = "Someday";
     	String teamWithSmallestGoalSpread = "A good team";
     	
-    	
+    	// handle input arguments
     	if (args.length == 0 || args.length == 1) {
     		App.printHelp();
     		return;
     	}
     	
+    	// require argument pairs
     	if (args.length%2 != 0) {
     		System.out.println("Error: Missing argument(s)");
     		return;
     	}
     	
 		for (int i = 0; i < args.length; i += 2) {
+			
 			switch (args[i]) {
+			
 			case "--football":
 			case "-f":
-				footballReader = new CsvReader("src/main/resources/de/exxcellent/challenge/" + args[i+1], ",", new FootballChallenge());
+				footballReader = new CsvReader("src/main/resources/de/exxcellent/challenge/" + args[i+1], ",", fbChallenge);
+				// do the actual work
 				teamWithSmallestGoalSpread = footballReader.readFile();
 				break;
 			case "--weather":
 			case "-w":
-				weatherReader = new CsvReader("src/main/resources/de/exxcellent/challenge/" + args[i+1], ",", new WeatherChallenge());
+				weatherReader = new CsvReader("src/main/resources/de/exxcellent/challenge/" + args[i+1], ",", wChallenge);
+				// do the actual work
 				dayWithSmallestTempSpread = weatherReader.readFile();
 				break;
+				
 			default:
 				printHelp();
 				return;
 			}
 		}
+		
+		// Result output
 		for (int i = 0; i < args.length; i++) {
 			if (args[i]=="-w" || args[i]=="--weather") {
 				System.out.printf("Day with smallest temperature spread : %s%n", dayWithSmallestTempSpread);

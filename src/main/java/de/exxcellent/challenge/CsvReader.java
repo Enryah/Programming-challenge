@@ -18,12 +18,25 @@ public class CsvReader {
 	final static int FOOTBALL = 2;
 	private Challenge challenge;
 	
+	/**
+	 * Constructor for CsvReader.
+	 * @param path Path to csv file
+	 * @param delim Delimiter used in csv file
+	 * @param  {@link Challenge.class} Implementation
+	 * @param data String array containing the cells of the row
+	 */
 	public CsvReader(String path, String delim, Challenge challenge) {
 		this.path = path;
 		this.delim = delim;
 		this.challenge = challenge;
 	}
 	
+	/**
+	 * Reads in the file located at @code{path} line by line.
+	 * Applies row calculations specified in the challenge implementation.
+	 * 
+	 * @return String result of the challenge
+	 */
 	public String readFile() {
 		try {
 			BufferedReader reader = new BufferedReader(new FileReader(path));

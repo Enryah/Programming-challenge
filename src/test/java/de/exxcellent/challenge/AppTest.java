@@ -17,28 +17,36 @@ class AppTest {
 
     @Test 
     void runBoth(){
+    	System.out.println("Test runBoth:");
     	App.main("--football", "football.csv", "--weather", "weather.csv");
-    	assertEquals("Aston_Villa", Football.teamMinGoalDiff, "");
-    	assertEquals(1, Football.deltaMin, "");
-    	assertEquals("14", Weather.dayMin, "");
-    	assertEquals(2.0f, Weather.deltaMin, "");
+    	assertEquals("Aston_Villa", App.fbChallenge.teamMinGoalDiff, "");
+    	assertEquals(1, App.fbChallenge.deltaMin, "");
+    	assertEquals("14", App.wChallenge.getResult(), "");
+    	assertEquals(2.0f, App.wChallenge.getDeltaMin(), "");
+    	System.out.println();
     }
 
     @Test
     void runFootball() {
+    	System.out.println("Test runFootball:");
         App.main("--football", "football.csv");
-    	assertEquals("Aston_Villa", Football.teamMinGoalDiff, "");
-    	assertEquals(1, Football.deltaMin, "");
+    	assertEquals("Aston_Villa", App.fbChallenge.teamMinGoalDiff, "");
+    	assertEquals(1, App.fbChallenge.deltaMin, "");
+    	System.out.println();
     }
     @Test
     void runWeather() {
+    	System.out.println("Test runWeather:");
     	App.main("--weather", "weather.csv");
-    	assertEquals("14", Weather.dayMin, "");
-    	assertEquals(2.0f, Weather.deltaMin, "");
+    	assertEquals("14", App.wChallenge.getResult(), "");
+    	assertEquals(2.0f, App.wChallenge.getDeltaMin(), "");
+    	System.out.println();
     }
     @Test
     void runHelp() {
+    	System.out.println("Test runHelp()");
     	App.main("");
+    	System.out.println();
     }
 
 }
