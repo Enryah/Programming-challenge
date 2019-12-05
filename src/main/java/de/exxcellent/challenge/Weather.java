@@ -12,8 +12,6 @@ public class Weather {
 	static String day_min="Someday";
 
 	public static void calculateTempSpread(String[] row) {
-
-		System.out.println(row[1]+", "+ row[2]);
 		
 		float max = Weather.parseFloat(row[1]);
 		float min = Weather.parseFloat(row[2]);
