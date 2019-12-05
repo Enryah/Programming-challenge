@@ -1,6 +1,7 @@
 package de.exxcellent.challenge;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
@@ -31,6 +32,8 @@ public class CsvReader {
 			    }
 			reader.close();
 			    
+		} catch(FileNotFoundException a) {
+			System.out.println("File not found.");
 		} catch(IOException e) {
 			System.out.println("Exception occurred while trying to read the file.");
 			e.printStackTrace();
