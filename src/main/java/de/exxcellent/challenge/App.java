@@ -34,12 +34,12 @@ public final class App {
 			switch (args[i]) {
 			case "--football":
 			case "-f":
-				footballReader = new CsvReader("src/main/resources/de/exxcellent/challenge/" + args[i+1], ",");
+				footballReader = new CsvReader("src/main/resources/de/exxcellent/challenge/" + args[i+1], ",", CsvReader.FOOTBALL);
 				teamWithSmallestGoalSpread = footballReader.readFile();
 				break;
 			case "--weather":
 			case "-w":
-				weatherReader = new CsvReader("src/main/resources/de/exxcellent/challenge/" + args[i+1], ",");
+				weatherReader = new CsvReader("src/main/resources/de/exxcellent/challenge/" + args[i+1], ",", CsvReader.WEATHER);
 				dayWithSmallestTempSpread = weatherReader.readFile();
 				break;
 			default:
@@ -47,10 +47,15 @@ public final class App {
 				return;
 			}
 		}
-    	
-        System.out.printf("Day with smallest temperature spread : %s%n", dayWithSmallestTempSpread);
-
-        System.out.printf("Team with smallest goal spread       : %s%n", teamWithSmallestGoalSpread);
+		for (int i = 0; i < args.length; i++) {
+			if (args[i]=="-w" || args[i]=="--weather") {
+				System.out.printf("Day with smallest temperature spread : %s%n", dayWithSmallestTempSpread);
+				
+			}
+			if (args[i]=="-f" || args[i]=="--football") {
+				System.out.printf("Team with smallest goal spread       : %s%n", teamWithSmallestGoalSpread);
+			}
+		}
     }
     
     public static void printHelp() {

@@ -8,22 +8,22 @@ package de.exxcellent.challenge;
 
 public class Weather {
 	// save best result
-	static float delta_min=Float.NaN;
-	static String day_min="Someday";
+	static float deltaMin=Float.NaN;
+	static String dayMin="Someday";
 
-	public static void calculateTempSpread(String[] row) {
+	public static void calculateTempSpread(String[] data) {
 		
-		float max = Weather.parseFloat(row[1]);
-		float min = Weather.parseFloat(row[2]);
+		float max = Weather.parseFloat(data[1]);
+		float min = Weather.parseFloat(data[2]);
 		
 		// if first result
-		if (max != Float.NaN && min != Float.NaN) {
+		if (!Float.isNaN(max) && !Float.isNaN(min)) {
 			float delta = max-min;
 			// or better result
-			if (Float.isNaN(delta_min) || delta < delta_min) {
+			if (Float.isNaN(deltaMin) || delta < deltaMin) {
 				// overwrite the best result
-				delta_min = delta;
-				day_min = row[0];
+				deltaMin = delta;
+				dayMin = data[0];
 			}
 		}
 	}
@@ -42,6 +42,6 @@ public class Weather {
 	}
 	
 	public static String getResult() {
-		return day_min;
+		return dayMin;
 	}
 }

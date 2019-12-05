@@ -15,17 +15,26 @@ class AppTest {
     void setUp() {
     }
 
-        
+    @Test 
+    void runBoth(){
+    	App.main("--football", "football.csv", "--weather", "weather.csv");
+    	assertEquals("Aston_Villa", Football.teamMinGoalDiff, "");
+    	assertEquals(1, Football.deltaMin, "");
+    	assertEquals("14", Weather.dayMin, "");
+    	assertEquals(2.0f, Weather.deltaMin, "");
+    }
 
     @Test
     void runFootball() {
         App.main("--football", "football.csv");
+    	assertEquals("Aston_Villa", Football.teamMinGoalDiff, "");
+    	assertEquals(1, Football.deltaMin, "");
     }
     @Test
     void runWeather() {
     	App.main("--weather", "weather.csv");
-    	assertEquals(Weather.day_min, "14" , "");
-    	assertEquals(Weather.delta_min, 2.0f , "");
+    	assertEquals("14", Weather.dayMin, "");
+    	assertEquals(2.0f, Weather.deltaMin, "");
     }
     @Test
     void runHelp() {
