@@ -22,7 +22,9 @@ public class CsvReader {
 	public String readFile() {
 		try {
 			BufferedReader reader = new BufferedReader(new FileReader(path));
-			String row;
+			// Header
+			String row = reader.readLine();
+			
 			while ((row = reader.readLine()) != null) {
 			    String[] data = row.split(delim);
 			    Weather.calculateTempSpread(data);	

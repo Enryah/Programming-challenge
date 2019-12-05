@@ -7,20 +7,22 @@ package de.exxcellent.challenge;
  */
 
 public class Weather {
-	// default result
+	// save best result
 	static float delta_min=Float.NaN;
 	static String day_min="Someday";
 
 	public static void calculateTempSpread(String[] row) {
 
-		float a = Weather.parseFloat(row[1]);
-		float b = Weather.parseFloat(row[2]);
+		System.out.println(row[1]+", "+ row[2]);
+		
+		float max = Weather.parseFloat(row[1]);
+		float min = Weather.parseFloat(row[2]);
 		
 		// if first result
-		if (a != Float.NaN && b != Float.NaN) {
-			float delta = b-a;
+		if (max != Float.NaN && min != Float.NaN) {
+			float delta = max-min;
 			// or better result
-			if (delta_min == Float.NaN || delta_min > delta) {
+			if (Float.isNaN(delta_min) || delta < delta_min) {
 				// overwrite the best result
 				delta_min = delta;
 				day_min = row[0];
